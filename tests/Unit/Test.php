@@ -10,6 +10,8 @@ use App\Services\ArchitectureAndDesignPatternsService;
 use App\Services\AdvancedSecurityService;
 use App\Services\IntegrationAndMicroservicesService;
 use App\Enums\AvlNodeEnum;
+use App\Commands\AddTextCommand;
+use Exception;
 
 class Test extends TestCase
 {
@@ -63,9 +65,12 @@ class Test extends TestCase
      */
     public function test_architecture_and_design_patterns(): void
     {
-        $service = new ArchitectureAndDesignPatternsService();
-        $result = $service->run();
-        $this->assertTrue($result);
+        $text = 'Teste';
+        $command = new AddTextCommand('Teste');
+        $add = $command->execute();
+        $this->assertEquals('Adiciona "' . $text . '" ao sistema', trim($add));
+        $undo = $command->undo();
+        $this->assertEquals('Desfaz a adição do texto "' . $text . '"', trim($undo));
     }
 
     /**
@@ -96,7 +101,11 @@ class Test extends TestCase
     public function test_integration_and_microservices(): void
     {
         $service = new IntegrationAndMicroservicesService();
-        $result = $service->run();
-        $this->assertTrue($result);
+         try{
+            $service->sendMessage();
+            $this->assertTrue(true);
+        } catch (Exception $e) {
+            $this->assertTrue(false);
+        }
     }
 }

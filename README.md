@@ -32,7 +32,7 @@ RABBITMQ_VHOST=/
 ```
 
 3. Execute o Laravel Sail com o comando (o '-d' serve para executar em segundo plano e poder fazer os demais comandos)
-
+    
 ```
 ./vendor/bin/sail up -d
 ```

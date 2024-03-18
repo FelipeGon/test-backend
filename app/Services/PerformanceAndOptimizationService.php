@@ -10,6 +10,10 @@ class PerformanceAndOptimizationService
      * @param int $start
      * @param int $end
      *
+     * O uso da fórmula de verificação de primos baseada em divisibilidade reduz o número de
+     * divisões necessárias para determinar se um número é primo.
+     * Isso melhora significativamente o desempenho ao lidar com intervalos grandes.
+     *
      * @return int
      */
     public function sumOfNumbersPrimes(int $start, int $end): int
